@@ -1,0 +1,67 @@
+LayerViews:
+  DUMMY:
+    layer: [0, 0]
+    color: "black"
+    visible: false
+  DEVICE:
+    layer: [1, 0]
+    hatch_pattern: solid
+    width: 1
+    color: "#007EFF"
+  DEVICE_REMOVE:
+    layer: [2, 0]
+    hatch_pattern: solid
+    color: "#FFEEFF"
+  HANDLE_REMOVE:
+    layer: [12, 0]
+    layer_in_name: true
+    hatch_pattern: left-hatched
+    width: 1
+    color: "#F3347E"
+  VIAS_ETCH:
+    layer: [21, 0]
+    layer_in_name: true
+    hatch_pattern: solid
+    color: "#FF7F00"
+  POLY:
+    layer: [22, 0]
+    layer_in_name: true
+    hatch_pattern: coarsely dotted
+    color: "#FF00FF"
+  OXIDE:
+    layer: [23, 0]
+    layer_in_name: true
+    hatch_pattern: coarsely dotted
+    width: 1
+    color: "#00A3EF"
+  NITRIDE:
+    layer: [23, 0]
+    layer_in_name: true
+    hatch_pattern: coarsely dotted
+    width: 1
+    color: "#00A3EF"
+  CAP_OXIDE:
+    layer: [101, 0]
+    layer_in_name: true
+    hatch_pattern: lightly left-hatched
+    color: "#007F00"
+    visible: false
+  CAP_NITRIDE:
+    layer: [102, 0]
+    layer_in_name: true
+    hatch_pattern: lightly left-hatched
+    color: "#003F7F"
+    visible: false
+  CAP_TRENCH_ETCH:
+    layer: [103, 0]
+    layer_in_name: true
+    hatch_pattern: lightly left-hatched
+    color: "#4F004F"
+    visible: false
+  CAP_BACKSIDE:
+    layer: [104, 0]
+    layer_in_name: true
+    width: 5
+    hatch_pattern: hollow
+    color: "#004F00"
+    visible: false

@@ -32,3 +32,14 @@ PDK = gf.Pdk(
     layers=LAYERS,
     layer_views=gf.technology.LayerViews(),
 )
+
+LAYER_VIEWS = gf.technology.LayerViews(filepath="mega_pc.yaml")
+LAYER_VIEWS.to_lyp("mega_pc.lyp")
+
+if __name__ == "__main__":
+
+    # This is a helper function that creates a gdsfactory component specifically designed to visualize the entire layer set.
+    # It draws a series of labeled, colored boxes, with each box representing a different layer from the PDK.
+    PDK.activate()
+    c = LAYER_VIEWS.preview_layerset()
+    c.show()
