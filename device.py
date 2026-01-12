@@ -794,15 +794,6 @@ def cap_border_quarter() -> gf.Component:
         layer2=LAYERS.CAP_BACKSIDE,
     )
 
-    _ = c << gl.basic.ring(
-        radius_inner=1.1 * CAP_TRENCH_OUTER_RADIUS,
-        radius_outer=0.5 * CHIP_SIZE,
-        angles=(15, 75),
-        geometry_layer=LAYERS.CAP_OXIDE,
-        angle_resolution=ANGLE_RESOLUTION,
-        release_spec=None,
-    )
-
     c.name = "CAP_BORDER_QUARTER"
 
     return c
