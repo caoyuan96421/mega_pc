@@ -816,28 +816,34 @@ def device(text: str) -> gf.Component:
 
     center_carriage_ref = c << center_carriage()
 
-    r_flexure_half_upper_ref = c << r_flexure_half()
+    rfh = r_flexure_half()
+    r_flexure_half_upper_ref = c << rfh
     r_flexure_half_upper_ref.rotate(angle=90, center=(0, 0))
 
-    r_flexure_half_lower_ref = c << r_flexure_half()
+    r_flexure_half_lower_ref = c << rfh
     r_flexure_half_lower_ref.rotate(angle=90, center=(0, 0))
     r_flexure_half_lower_ref.mirror_y(0)
 
-    r_flexure_half_right_ref = c << r_drive_half()
-    r_flexure_half_left_ref = c << r_drive_half()
+    rdh = r_drive_half()
+    r_flexure_half_right_ref = c << rdh
+    r_flexure_half_left_ref = c << rdh
     r_flexure_half_left_ref.mirror_x(0)
 
+    zdr = z_drive()
+    cbp = chip_bond_pad()
+    zrl = z_release_lock()
+    cbq = cap_border_quarter()
     for r in [0, 90, 180, 270]:
-        z_drive_ref = c << z_drive()
+        z_drive_ref = c << zdr
         z_drive_ref.rotate(angle=r, center=(0, 0))
 
-        chip_bond_ref = c << chip_bond_pad()
+        chip_bond_ref = c << cbp
         chip_bond_ref.rotate(angle=r, center=(0, 0))
 
-        z_release_lock_ref = c << z_release_lock()
+        z_release_lock_ref = c << zrl
         z_release_lock_ref.rotate(angle=r, center=(0, 0))
 
-        cap_border_quarter_ref = c << cap_border_quarter()
+        cap_border_quarter_ref = c << cbq
         cap_border_quarter_ref.rotate(angle=r, center=(0, 0))
 
     zr_connector_ref = c << zr_connector()
