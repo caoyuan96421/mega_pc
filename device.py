@@ -96,6 +96,7 @@ WIRE_BOND_OFFSET = 2200
 CHIP_BOND_RADIUS = 2600
 CHIP_BOND_SPAN = 60
 CHIP_BOND_MARKER_SIZE = 100
+CHIP_BOND_MARGIN = 50
 
 CAP_CHIP_SIZE = 5000
 CAP_TRENCH_INNER_RADIUS = 450
@@ -715,22 +716,37 @@ def z_release_lock() -> gf.Component:
 
 @static_cell
 def chip_bond_pad() -> gf.Component:
-    c = gf.boolean(
-        A=gf.components.rectangle(
-            size=(0.5 * CAP_CHIP_SIZE, 0.5 * CAP_CHIP_SIZE),
-            layer=LAYERS.DEVICE,
-            centered=False,
-        ),
-        B=gf.components.circle(
-            radius=CHIP_BOND_RADIUS,
-            angle_resolution=ANGLE_RESOLUTION,
-            layer=LAYERS.DEVICE,
-        ),
-        operation="-",
-        layer=LAYERS.DEVICE,
-        layer1=LAYERS.DEVICE,
-        layer2=LAYERS.DEVICE,
+    @gl.utils.default_cell
+    def bond_pad(geometry_layer: gf.typings.LayerSpec) -> gf.Component:
+        c = gf.boolean(
+            A=gf.components.rectangle(
+                size=(0.5 * CAP_CHIP_SIZE, 0.5 * CAP_CHIP_SIZE),
+                layer=geometry_layer,
+                centered=False,
+            ),
+            B=gf.components.circle(
+                radius=CHIP_BOND_RADIUS,
+                angle_resolution=ANGLE_RESOLUTION,
+                layer=geometry_layer,
+            ),
+            operation="-",
+            layer=geometry_layer,
+            layer1=geometry_layer,
+            layer2=geometry_layer,
+        )
+
+        return c
+
+    c = gf.Component()
+
+    _ = c << bond_pad(geometry_layer=LAYERS.DEVICE)
+
+    cap_bond_pad = bond_pad(geometry_layer=LAYERS.CAP_BOND).copy()
+    cap_bond_pad.offset(
+        layer=LAYERS.CAP_BOND,
+        distance=-CHIP_BOND_MARGIN,
     )
+    _ = c << cap_bond_pad
 
     marker0_ref = c << gf.components.rectangle(
         size=(CHIP_BOND_MARKER_SIZE, 0.1 * CHIP_BOND_MARKER_SIZE),
@@ -748,8 +764,6 @@ def chip_bond_pad() -> gf.Component:
     marker1_ref.move(
         (0.5 * CAP_CHIP_SIZE + 0.1 * CHIP_BOND_MARKER_SIZE, 0.5 * CAP_CHIP_SIZE)
     )
-
-    c.name = "CHIP_BOND_PAD"
 
     return c
 

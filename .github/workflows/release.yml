@@ -39,6 +39,9 @@ jobs:
                     ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_CAP_BACKSIDE.gds
                     ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_CAP_BACKSIDE_MIRROR.gds
                     ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_CAP_BACKSIDE_PLACEMENTS.txt
+                    ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_CAP_TRENCH_ETCH.gds
+                    ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_CAP_TRENCH_ETCH_MIRROR.gds
+                    ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_CAP_TRENCH_ETCH_PLACEMENTS.txt
                     ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_HANDLE_REMOVE.gds
                     ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_HANDLE_REMOVE_MIRROR.gds
                     ./build/mega_pc_${{ github.ref_name }}_BUILD_WAFER_HANDLE_REMOVE_PLACEMENTS.txt

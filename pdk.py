@@ -23,8 +23,9 @@ class LAYERS(gf.technology.LayerMap):
 
     CAP_OXIDE: gf.typings.Layer = (101, 0)
     CAP_NITRIDE: gf.typings.Layer = (102, 0)
-    CAP_TRENCH_ETCH: gf.typings.Layer = (103, 0)
-    CAP_BACKSIDE: gf.typings.Layer = (104, 0)
+    CAP_BOND: gf.typings.Layer = (103, 0)
+    CAP_TRENCH_ETCH: gf.typings.Layer = (104, 0)
+    CAP_BACKSIDE: gf.typings.Layer = (105, 0)
 
 
 PDK = gf.Pdk(

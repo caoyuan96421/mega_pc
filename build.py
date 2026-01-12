@@ -165,6 +165,7 @@ for layer in [
     LAYERS.NITRIDE,
     LAYERS.CAP_OXIDE,
     LAYERS.CAP_NITRIDE,
+    LAYERS.CAP_BOND,
 ]:
     _ = c << gf.boolean(
         A=CHIP_RECT,
@@ -197,7 +198,7 @@ if not args.no_merge:
             LAYERS.DEVICE_REMOVE,
             LAYERS.CAP_OXIDE,
             LAYERS.CAP_NITRIDE,
-            LAYERS.CAP_TRENCH_ETCH,
+            LAYERS.CAP_BOND,
         ],
         id=f"MPC-{args.version}",
         text=date_str,
@@ -230,7 +231,11 @@ if not args.no_merge:
             f.write(f"{LAYERS(key)}: {value[0]}, {value[1]:.2f}, {value[2]:.2f}\n")
 
     # generate wafer masks for backside
-    for layer in [LAYERS.HANDLE_REMOVE, LAYERS.CAP_BACKSIDE]:
+    for layer in [
+        LAYERS.HANDLE_REMOVE,
+        LAYERS.CAP_TRENCH_ETCH,
+        LAYERS.CAP_BACKSIDE,
+    ]:
         wafer, placements = gb.asml300.wafer(
             radius=0.5 * WAFER_DIAMETER,
             chip_center=True,
