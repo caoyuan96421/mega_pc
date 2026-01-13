@@ -2,6 +2,9 @@ import gdsfactory as gf
 
 gf.clear_cache()
 
+from pdk import LAYERS, PDK
+
+PDK.activate()
 
 import gfelib as gl
 import gfebuild as gb
@@ -9,10 +12,8 @@ import sys
 import datetime
 import argparse
 
-from pdk import LAYERS, PDK
 from device import device, CHIP_SIZE, CAVITY_WIDTH
 
-PDK.activate()
 
 parser = argparse.ArgumentParser(description="Build script for MEGA-PC")
 parser.add_argument(
